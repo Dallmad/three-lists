@@ -1,0 +1,32 @@
+@import 'src/common/styles/mixins';
+
+.container {
+  @include flex(row, space-between, start);
+  width: 70vw;
+  margin: 0 15vw;
+  height: 100vh;
+  box-sizing: border-box;
+
+  .list {
+    @include flex(column, center, flex-start);
+
+    .tasks {
+      @include flex(row, space-between, start);
+      margin-bottom: 10px;
+
+      .task {
+        min-width: 100px;
+      }
+
+      .move {
+        margin-left: 5px;
+      }
+    }
+
+    .input {
+      margin-bottom: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+}
