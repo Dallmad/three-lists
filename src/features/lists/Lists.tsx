@@ -2,8 +2,8 @@ import React, { ChangeEvent, memo, useState } from 'react';
 
 import { v1 } from 'uuid';
 
-import { ReturnComponentType } from 'common';
-import { FIRST_LIST, SECOND_LIST, THIRD_LIST, ListsType, LISTS_TITLE } from 'enums';
+import { ListsType, ReturnComponentType } from 'common';
+import { FIRST_LIST, LISTS_TITLE, SECOND_LIST, THIRD_LIST } from 'constants/index';
 import { List } from 'features/lists/list/List';
 import style from 'features/lists/Lists.module.scss';
 

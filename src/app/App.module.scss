@@ -2,10 +2,5 @@
 
 .container {
   @include flex(column, space-between, center);
-/*  width: 70vw;
-  margin: 0 15vw;
-  height: 100vh;
-  box-sizing: border-box;
-  font-size: 20px;*/
 }
 

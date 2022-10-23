@@ -1,13 +1,8 @@
 import React, { ChangeEvent, memo, useState } from 'react';
 
-import pencil from 'assets/images/pencil.png';
+import { EditableSpanPropsType } from './types';
 
-type EditableSpanPropsType = {
-  value: string;
-  id: string;
-  onChange: (id: string, newValue: string) => void;
-  className: string;
-};
+import pencil from 'assets/images/pencil.png';
 
 export const EditableSpan = memo(
   ({ value, onChange, id, className }: EditableSpanPropsType) => {

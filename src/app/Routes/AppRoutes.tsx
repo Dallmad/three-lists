@@ -4,8 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 
 import { ReturnComponentType } from 'common';
 import { PATH } from 'enums';
-import { Error404 } from 'features';
-import { Lists } from 'features/lists/Lists';
+import { Error404, Lists } from 'features';
 
 export const AppRoutes: FC = (): ReturnComponentType => {
   return (

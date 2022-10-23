@@ -1,4 +1,4 @@
-import { ListsType } from 'enums';
+import { ListsType } from 'common';
 
 export type ListPropsType = {
   list: ListsType;

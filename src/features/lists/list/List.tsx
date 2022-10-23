@@ -4,7 +4,7 @@ import { ListPropsType } from './types';
 
 import { ReturnComponentType } from 'common';
 import { EditableSpan } from 'components';
-import { LISTS_TITLE } from 'enums';
+import { LISTS_TITLE } from 'constants/index';
 import style from 'features/lists/Lists.module.scss';
 
 export const List = memo(
