@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/three-lists/static/css/main.14dbfd28.css",
+    "main.js": "/three-lists/static/js/main.7d12844d.js",
+    "static/media/pencil.png": "/three-lists/static/media/pencil.1f91dbfc548f87522ef6.png",
+    "index.html": "/three-lists/index.html",
+    "main.14dbfd28.css.map": "/three-lists/static/css/main.14dbfd28.css.map",
+    "main.7d12844d.js.map": "/three-lists/static/js/main.7d12844d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.14dbfd28.css",
+    "static/js/main.7d12844d.js"
+  ]
+}
