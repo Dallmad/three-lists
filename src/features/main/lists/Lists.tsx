@@ -1,18 +1,18 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, memo, useState } from 'react';
 
 import { v1 } from 'uuid';
 
 import style from './Lists.module.scss';
 
 import { ReturnComponentType } from 'common';
-import { FIRST_LIST, SECOND_LIST, THIRD_LIST } from 'enums';
-import { ListsType, ListType } from 'enums/Lists';
+import { EditableSpan } from 'components';
+import { FIRST_LIST, SECOND_LIST, THIRD_LIST, ListsType, ListType } from 'enums';
 
-export const Lists = (): ReturnComponentType => {
+export const Lists = memo((): ReturnComponentType => {
   const [firstList, setFirstList] = useState<ListsType>(FIRST_LIST);
   const [secondList, setSecondList] = useState<ListsType>(SECOND_LIST);
   const [thirdList, setThirdList] = useState<ListsType>(THIRD_LIST);
-  const [newTitle, setNewTitle] = useState('');
+  const [newTitle, setNewTitle] = useState<string>('');
 
   const titleHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     setNewTitle(e.currentTarget.value);
@@ -24,9 +24,6 @@ export const Lists = (): ReturnComponentType => {
     setSecondList(secondList.concat(newTask));
     setNewTitle('');
   };
-
-  console.log(`firstList:${firstList}`);
-  console.log(addTaskToSecondList);
 
   const moveTaskToSecondList = (task: ListType): void => {
     setSecondList(secondList.concat(task));
@@ -55,11 +52,16 @@ export const Lists = (): ReturnComponentType => {
   const deleteTaskHandler = (id: string): void => {
     setSecondList(secondList.filter(list => list.id !== id));
   };
+  const onChangeTaskTitle = (id: string, newTitle: string): void => {
+    setSecondList(
+      secondList.map(list => (list.id === id ? { ...list, title: newTitle } : list)),
+    );
+  };
 
   return (
     <div className={style.container}>
       <div className={style.list}>
-        List 1
+        <h4>List 1</h4>
         <button
           title="Move to second list"
           type="button"
@@ -68,7 +70,7 @@ export const Lists = (): ReturnComponentType => {
           &gt;&gt;
         </button>
         {firstList.map(l => (
-          <div key={l.title} className={style.tasks}>
+          <div key={l.id} className={style.tasks}>
             <li className={style.task}>{l.title}</li>
             <button
               title="Move to second list"
@@ -83,7 +85,7 @@ export const Lists = (): ReturnComponentType => {
       </div>
 
       <div className={style.list}>
-        List 2
+        <h4>List 2</h4>
         <button
           title="Move to third list"
           type="button"
@@ -92,8 +94,13 @@ export const Lists = (): ReturnComponentType => {
           &gt;&gt;
         </button>
         {secondList.map(l => (
-          <div key={l.title} className={style.tasks}>
-            <li className={style.task}>{l.title}</li>
+          <div key={l.id} className={style.tasks}>
+            <EditableSpan
+              value={l.title}
+              onChange={onChangeTaskTitle}
+              id={l.id}
+              className={style.task}
+            />
             <button
               title="Move to third list"
               type="button"
@@ -101,9 +108,6 @@ export const Lists = (): ReturnComponentType => {
               className={style.move}
             >
               &gt;
-            </button>
-            <button type="button" onClick={() => {}} className={style.move}>
-              Edit
             </button>
             <button
               type="button"
@@ -130,7 +134,7 @@ export const Lists = (): ReturnComponentType => {
       </div>
 
       <div className={style.list}>
-        List 3
+        <h4>List 3</h4>
         <button
           title="Move to first list"
           type="button"
@@ -139,7 +143,7 @@ export const Lists = (): ReturnComponentType => {
           &gt;&gt;
         </button>
         {thirdList.map(l => (
-          <div key={l.title} className={style.tasks}>
+          <div key={l.id} className={style.tasks}>
             <li className={style.task}>{l.title}</li>
             <button
               title="Move to first list"
@@ -154,4 +158,4 @@ export const Lists = (): ReturnComponentType => {
       </div>
     </div>
   );
-};
+});

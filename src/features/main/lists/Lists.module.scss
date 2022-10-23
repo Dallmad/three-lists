@@ -6,6 +6,7 @@
   margin: 0 15vw;
   height: 100vh;
   box-sizing: border-box;
+  font-size: 20px;
 
   .list {
     @include flex(column, center, flex-start);
@@ -15,7 +16,7 @@
       margin-bottom: 10px;
 
       .task {
-        min-width: 100px;
+        min-width: 150px;
       }
 
       .move {
