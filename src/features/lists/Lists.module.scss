@@ -1,4 +1,4 @@
-@import 'src/common/styles/mixins';
+@import '../../common/styles/mixins';
 
 .container {
   @include flex(row, space-between, start);

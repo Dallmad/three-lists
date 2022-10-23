@@ -1,5 +1,5 @@
 export enum PATH {
   ERROR404 = '/404',
-  MAIN = '/lists',
+  LISTS = '/lists',
   ANOTHER = '*',
 }
