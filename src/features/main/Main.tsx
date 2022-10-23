@@ -6,7 +6,6 @@ import { Lists } from 'features/main/lists/Lists';
 export const Main = (): ReturnComponentType => {
   return (
     <div>
-      Main
       <Lists />
     </div>
   );

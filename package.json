@@ -1,11 +1,13 @@
 {
   "name": "three-lists",
   "version": "0.1.0",
+  "homepage": "https://Dallmad.github.io/three-lists",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/node": "^16.11.68",
+    "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
@@ -20,6 +22,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "prepare": "husky install",
     "lint-fix": "eslint --fix"
   },
@@ -47,9 +51,9 @@
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
     "@types/react-router-dom": "^5.3.3",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.30.3",
     "@typescript-eslint/parser": "^5.30.3",
-    "@types/uuid": "^8.3.4",
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
