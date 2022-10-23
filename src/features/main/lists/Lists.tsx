@@ -1,4 +1,4 @@
-import React, { ChangeEvent, memo, useState } from 'react';
+import React, { ChangeEvent, memo, useEffect, useState } from 'react';
 
 import { v1 } from 'uuid';
 
@@ -6,7 +6,7 @@ import style from './Lists.module.scss';
 
 import { ReturnComponentType } from 'common';
 import { EditableSpan } from 'components';
-import { FIRST_LIST, SECOND_LIST, THIRD_LIST, ListsType, ListType } from 'enums';
+import { FIRST_LIST, SECOND_LIST, THIRD_LIST, ListsType } from 'enums';
 
 export const Lists = memo((): ReturnComponentType => {
   const [firstList, setFirstList] = useState<ListsType>(FIRST_LIST);
@@ -25,30 +25,25 @@ export const Lists = memo((): ReturnComponentType => {
     setNewTitle('');
   };
 
-  const moveTaskToSecondList = (task: ListType): void => {
-    setSecondList(secondList.concat(task));
-    setFirstList(firstList.filter(list => list.id !== task.id));
+  const moveTasksToSecondList = (tasks: ListsType): void => {
+    setSecondList(secondList.concat(tasks));
+    setFirstList(
+      firstList.filter(list => list.id && !tasks.map(el => el.id).includes(list.id)),
+    );
   };
-  const moveTaskToThirdList = (task: ListType): void => {
-    setThirdList(thirdList.concat(task));
-    setSecondList(secondList.filter(list => list.id !== task.id));
+  const moveTasksToFirstList = (tasks: ListsType): void => {
+    setFirstList(firstList.concat(tasks));
+    setThirdList(
+      thirdList.filter(list => list.id && !tasks.map(el => el.id).includes(list.id)),
+    );
   };
-  const moveTaskToFirstList = (task: ListType): void => {
-    setFirstList(firstList.concat(task));
-    setThirdList(thirdList.filter(list => list.id !== task.id));
+  const moveTasksToThirdList = (tasks: ListsType): void => {
+    setThirdList(thirdList.concat(tasks));
+    setSecondList(
+      secondList.filter(list => list.id && !tasks.map(el => el.id).includes(list.id)),
+    );
   };
-  const moveFirstListToSecondList = (list: ListsType): void => {
-    setSecondList(secondList.concat(list));
-    setFirstList([]);
-  };
-  const moveSecondListToThirdList = (list: ListsType): void => {
-    setThirdList(thirdList.concat(list));
-    setSecondList([]);
-  };
-  const moveThirdListToFirstList = (list: ListsType): void => {
-    setFirstList(firstList.concat(list));
-    setThirdList([]);
-  };
+
   const deleteTaskHandler = (id: string): void => {
     setSecondList(secondList.filter(list => list.id !== id));
   };
@@ -58,6 +53,8 @@ export const Lists = memo((): ReturnComponentType => {
     );
   };
 
+  useEffect(() => {}, [firstList, secondList, thirdList]);
+
   return (
     <div className={style.container}>
       <div className={style.list}>
@@ -65,7 +62,7 @@ export const Lists = memo((): ReturnComponentType => {
         <button
           title="Move to second list"
           type="button"
-          onClick={() => moveFirstListToSecondList(firstList)}
+          onClick={() => moveTasksToSecondList(firstList)}
         >
           &gt;&gt;
         </button>
@@ -75,7 +72,7 @@ export const Lists = memo((): ReturnComponentType => {
             <button
               title="Move to second list"
               type="button"
-              onClick={() => moveTaskToSecondList(l)}
+              onClick={() => moveTasksToSecondList(Array(l))}
               className={style.move}
             >
               &gt;
@@ -89,7 +86,7 @@ export const Lists = memo((): ReturnComponentType => {
         <button
           title="Move to third list"
           type="button"
-          onClick={() => moveSecondListToThirdList(secondList)}
+          onClick={() => moveTasksToThirdList(secondList)}
         >
           &gt;&gt;
         </button>
@@ -104,7 +101,7 @@ export const Lists = memo((): ReturnComponentType => {
             <button
               title="Move to third list"
               type="button"
-              onClick={() => moveTaskToThirdList(l)}
+              onClick={() => moveTasksToThirdList(Array(l))}
               className={style.move}
             >
               &gt;
@@ -138,7 +135,7 @@ export const Lists = memo((): ReturnComponentType => {
         <button
           title="Move to first list"
           type="button"
-          onClick={() => moveThirdListToFirstList(thirdList)}
+          onClick={() => moveTasksToFirstList(thirdList)}
         >
           &gt;&gt;
         </button>
@@ -148,7 +145,7 @@ export const Lists = memo((): ReturnComponentType => {
             <button
               title="Move to first list"
               type="button"
-              onClick={() => moveTaskToFirstList(l)}
+              onClick={() => moveTasksToFirstList(Array(l))}
               className={style.move}
             >
               &gt;

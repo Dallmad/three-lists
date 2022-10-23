@@ -1,8 +1,8 @@
 import React from 'react';
 
 import style from './App.module.scss';
+import { AppRoutes } from './Routes/AppRoutes';
 
-import { AppRoutes } from 'app/Routes/AppRoutes';
 import { ReturnComponentType } from 'common';
 
 export const App = (): ReturnComponentType => {
